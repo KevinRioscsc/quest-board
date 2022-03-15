@@ -1,0 +1,14 @@
+.box{
+    width: 200px;
+    height: 100px;
+    background-color: rgb(199, 199, 199);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+}
+.box:hover{
+    background-color: gray;
+}

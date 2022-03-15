@@ -1,0 +1,120 @@
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #8f54a0 #ffffff;
+
+  }
+  body{
+   
+  }
+  .ball{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  *::-webkit-scrollbar-thumb{
+    border-radius: 50px;
+    background: #8f54a0;
+   
+    }
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 16px;
+  }
+ .purp{
+     background: #653074;
+ }
+  *::-webkit-scrollbar-track {
+    background: #ebecf0;
+  }
+
+  .margin{
+    margin: 10px 0px;
+  }
+  .icon{
+      display: flex;
+      gap: 10px;
+  }
+  .overflow{
+      height: 88%;
+      overflow: auto;
+  }
+  .projectName{
+      background: white;
+      display: inline-block;
+      padding: 5px 5px;
+      border-radius: 5px;
+      margin: 10px 0;
+  }
+  
+  .projectTitle{
+      font-size: 28px;
+  }
+  .navbarr{
+    background: #653074;
+  }
+nav{
+    max-width: 1300px;
+    padding: 10px 10px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+a{
+    text-decoration: none;
+   
+}
+.black{
+    color: black;
+}
+.white{
+    color: white;
+}
+h3{
+    margin: 0;
+}
+h5{
+    margin: 0;
+}
+p{
+    margin: 0;
+}
+.hover{
+    cursor: pointer;
+}
+.flex{
+    display: flex;
+    justify-content: center;
+}
+.space{
+    max-width: 1500px;
+    padding: 0 30px;
+    margin: 0 auto;
+}
+.white{
+    color: white;
+}
+
+  
+.cards{
+    display: flex;
+    gap:10px;
+}
+.signin-btn{
+    padding: 10px 12px;
+    background: white;
+    color: black;
+    border-radius: 50px;
+    transition: .2s ease-in-out;
+    cursor: pointer;
+}
+.black:hover{
+    color: white;
+}
+.signin-btn:hover{
+    background: rgba(140, 17, 255, 0.788);
+    color: white;
+}
