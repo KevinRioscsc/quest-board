@@ -34,9 +34,9 @@ const Template = () => {
     <div>
        <NavBar profilePic = {currentUser.photoURL} name = {currentUser.displayName} />
       
-      {/*
+      {
         loading
-        ?*/
+        ?
         (
           <div>
            
@@ -54,13 +54,13 @@ const Template = () => {
             </Hero>
          </div>
          
-        )/*
+        )
         :
         (
         <div className="ball">
-            <BallTriangle  color='rgb(53, 162, 235)' height= '80' width='80' ariaLabel='loading'/>
+            <BallTriangle  color='#6a11cb' height= '80' width='80' ariaLabel='loading'/>
         </div>
-        )*/
+        )
     }
     </div>
   )

@@ -2,13 +2,14 @@ import React, {useState, useEffect} from 'react'
 import { useAuth } from '../Context/AuthContext'
 import { Back } from './Board'
 import AddList from './AddList'
+import { BallTriangle } from 'react-loader-spinner';
 import Card from './Card'
 
 
 const Board = () => {
     const {Board, currentUser} = useAuth()
     const [create, setCreate] = useState(false)
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const [board, setBoard] = useState({
         pid: Board.pid,
         background: Board.background,
@@ -57,7 +58,7 @@ const Board = () => {
         .then(data => {
             console.log(data)
             setArr(data)
-            setLoading(false)
+            setLoading(true)
         })
     }
     useEffect(() => {
@@ -75,17 +76,23 @@ const Board = () => {
         </div>
           
         <div className="space overflow">
-          
+          { loading
+            ?
             <div className="cards">
                     {
-                        !loading && (
+                       
                         arr.map((item, index) => {
                             return <Card key={index} title={item.title} lid = {item.lid}/>
-                        }))
+                        })
                     }
                 <AddList pid = {Board.pid} setArr = {setArr}/>
                 
             </div>
+            :
+            <div className="ball">
+                <BallTriangle  color='#6a11cb' height= '80' width='80' ariaLabel='loading'/>
+            </div>
+          }
             
         </div>
     </Back>
