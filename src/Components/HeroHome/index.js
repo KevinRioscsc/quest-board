@@ -23,7 +23,22 @@ const Hero = () => {
               <p className='join'>Join over 1,000,000 teams worldwide that are using Quest to get more done.</p>
           </div>
       </div>
-
+      <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 mt-5 px-xl-5 purp">
+      
+      <div class="text-white mb-3 mb-md-0">
+        Copyright © 2020. All rights reserved.
+      </div>
+      
+      <div>
+        <a href="#!" class="text-white me-4" >
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="#!" class="text-white me-4">
+          <i class="fab fa-google"></i>
+        </a>
+      </div>
+      
+    </div>
     </div>
   )
 }
