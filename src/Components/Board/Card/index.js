@@ -21,13 +21,20 @@ const Card = ({title, lid}) => {
                     title:JSON.stringify(titleNew)
                 })
             }).then(res => res.json()) 
-            setArr(cards => [...cards, {
-                title:titleNew
+            .then(id => {
+                setArr(cards => [...cards, {
+                    lid: `${lid}`,
+                    cid:id.cid,
+                    title:titleNew
+    
+                }])
 
-            }])
-            setSubmit(!submit)
+                setSubmit(true)
+                setTitle('')
+            })
+            
         }
-        setTitle('')
+        
     }
     const getData = () => {
         fetch(' https://fathomless-tor-67298.herokuapp.com/getCard', {
@@ -45,8 +52,9 @@ const Card = ({title, lid}) => {
         if(lid !== null ){
             getData()
         }
+        setSubmit(false)
        console.log('useEffect for Card')
-    }, [selected, submit])
+    }, [])
 
     const deleteCard = (cid) => {
         fetch(' https://fathomless-tor-67298.herokuapp.com/delCard', {
@@ -56,9 +64,12 @@ const Card = ({title, lid}) => {
                 cid: JSON.stringify(cid)
             })
         }).then(res => res.json()) 
+        console.log(cid)
         setSelect(cid)
+        setArr( arr.filter((item) => item.cid !== cid));
+        console.log('this is the filtered arr',arr ,  cid)
     }
-
+    
     
   return (
     <div>
@@ -66,20 +77,19 @@ const Card = ({title, lid}) => {
             <Title>
                 <H5>{title.replaceAll('"','')}</H5>
             </Title>
+          
            
-            {
-               
+            {       
                 arr.map((item, index) => {
-                    console.log(item)
+                    console.log('arr in filter',item)
                     return (
-                       
+                      
                         <WordDiv >
                             <P>{item.title.replaceAll('"','')}</P>
                             <div className="icon">
                                 <BiTrashAlt onClick={() => deleteCard(item.cid)} className='hover'/>
                                 
-                            </div>
-                           
+                            </div>   
                         </WordDiv>
                     )
                 })
