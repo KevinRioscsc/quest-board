@@ -32,7 +32,7 @@ const SigninPage = () => {
           console.log(result.user.displayName)
           setLogin(true)
       }).catch((error) => {
-          console.log( 'poopy')
+          console.log(error)
       });
   }
   return (
