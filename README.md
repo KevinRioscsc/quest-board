@@ -1,4 +1,4 @@
-# Quest - List Creating App
+# Quest - Quest Creating App
 
 I created this app with the intentions of cretaing a workspace board for developers to track their own progress on their own projects or with other miscellenious things like creating a PC. Quest lets you create a quest and with that quest you can add any amount of activities that'll help you complete your own quest. It serves as a way to keep track of your own progress.
 
