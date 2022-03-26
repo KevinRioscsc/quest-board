@@ -3,9 +3,10 @@ import { Title, H5, ListItems, InputList, Input, Submit,Button, CardContainer, W
 import {ImCross} from 'react-icons/im'
 import {IoMdAdd} from 'react-icons/io'
 import {BiTrashAlt} from 'react-icons/bi'
-import {GrEdit} from 'react-icons/gr'
 
-const Card = ({title, lid}) => {
+import { Droppable, Draggable } from 'react-beautiful-dnd'
+
+const Card = ({title, lid, help_index}) => {
     const [toggle, setToggle] = useState(false)
     const [titleNew, setTitle] = useState('')
     const [arr, setArr] = useState([])
@@ -13,7 +14,7 @@ const Card = ({title, lid}) => {
     const [selected, setSelect] = useState(null)
     const submitList = () => {
         if(title){
-            fetch(' https://fathomless-tor-67298.herokuapp.com/createCard', {
+            fetch('https://quest--backend.herokuapp.com/createCard', {
                 method:'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -37,7 +38,7 @@ const Card = ({title, lid}) => {
         
     }
     const getData = () => {
-        fetch(' https://fathomless-tor-67298.herokuapp.com/getCard', {
+        fetch('https://quest--backend.herokuapp.com/getCard', {
             method:'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -57,7 +58,7 @@ const Card = ({title, lid}) => {
     }, [])
 
     const deleteCard = (cid) => {
-        fetch(' https://fathomless-tor-67298.herokuapp.com/delCard', {
+        fetch('https://quest--backend.herokuapp.com/delCard', {
             method:'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -73,39 +74,55 @@ const Card = ({title, lid}) => {
     
   return (
     <div>
-        <CardContainer>
-            <Title>
-                <H5>{title.replaceAll('"','')}</H5>
-            </Title>
-          
-           
-            {       
-                arr.map((item, index) => {
-                    console.log('arr in filter',item)
-                    return (
-                      
-                        <WordDiv >
-                            <P>{item.title.replaceAll('"','')}</P>
-                            <div className="icon">
-                                <BiTrashAlt onClick={() => deleteCard(item.cid)} className='hover'/>
+       
+                                    
+                        <CardContainer>
+                            <Title>
+                                <H5>{title.replaceAll('"','')}</H5>
+                            </Title>
+                        
+                        
+                            {       
+                                arr.map((item, index) => {
+                                    console.log('arr in filter',item)
+                                    return (
+                                        <Draggable draggableId={`${item}`} index = {index} >
+                                            {
+                                                (provided) => (
+                                                <WordDiv 
+                                                ref = {provided.innerRef}
+                                                {...provided.draggableProps}
+                                                {...provided.dragHandleProps}
+                                                onClick={() => console.log(index)}>
+                                                    <P>{item.title.replaceAll('"','')}</P>
+                                                    <div className="icon">
+                                                        <BiTrashAlt onClick={() => deleteCard(item.cid)} className='hover'/>
+                                                        
+                                                    </div>   
+                                                </WordDiv>
+                                                )}
+                                           
+                                        </Draggable>
+                                    )
+                                })
+                            }
+                           
+                            <ListItems toggle = {toggle} onClick={() => setToggle(!toggle)} >
+                                    <IoMdAdd size={20} />
+                                    <h5>Add a card</h5>
+                            </ListItems>
+                                <InputList toggle={toggle}>
+                                    <Input type="text" value={titleNew} onChange={(e) => setTitle(e.target.value)} placeholder='Enter title for this card...' />
+                                    <Submit>
+                                        <Button onClick={submitList} >Add List</Button>
+                                        <ImCross onClick={() => setToggle(!toggle)} className= 'hover' />
+                                    </Submit>
+                                </InputList>
                                 
-                            </div>   
-                        </WordDiv>
-                    )
-                })
-            }
-            <ListItems toggle = {toggle} onClick={() => setToggle(!toggle)} >
-                    <IoMdAdd size={20} />
-                    <h5>Add a card</h5>
-             </ListItems>
-                <InputList toggle={toggle}>
-                    <Input type="text" value={titleNew} onChange={(e) => setTitle(e.target.value)} placeholder='Enter title for this card...' />
-                    <Submit>
-                        <Button onClick={submitList} >Add List</Button>
-                        <ImCross onClick={() => setToggle(!toggle)} className= 'hover' />
-                    </Submit>
-                </InputList>
-        </CardContainer>
+                        </CardContainer>
+            
+        
+       
     </div>
   )
 }

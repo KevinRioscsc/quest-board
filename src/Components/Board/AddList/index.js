@@ -12,7 +12,7 @@ const AddList = ({setArr, pid}) => {
 
     const submitList = () => {
         if(title){
-            fetch(' https://fathomless-tor-67298.herokuapp.com/createList', {
+            fetch('https://quest--backend.herokuapp.com/createList', {
                 method:'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({

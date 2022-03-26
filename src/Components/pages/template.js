@@ -13,7 +13,7 @@ const Template = () => {
     const [arr, setArr] = useState([])
 
     const getData = () => {
-      fetch('https://fathomless-tor-67298.herokuapp.com/getProjects', {
+      fetch('https://quest--backend.herokuapp.com/getProjects', {
                 method:'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({

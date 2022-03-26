@@ -4,6 +4,8 @@ import { Back } from './Board'
 import AddList from './AddList'
 import { BallTriangle } from 'react-loader-spinner';
 import Card from './Card'
+import {DragDropContext} from 'react-beautiful-dnd'
+import { Droppable } from 'react-beautiful-dnd';
 
 
 const Board = () => {
@@ -28,7 +30,7 @@ const Board = () => {
             return cookie['pid'];
     }
     const getProject = () => {
-        fetch(' https://fathomless-tor-67298.herokuapp.com/getProject', {
+        fetch('https://quest--backend.herokuapp.com/getProject', {
             method:'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -48,7 +50,7 @@ const Board = () => {
     }
     
     const getData = () => {
-        fetch(' https://fathomless-tor-67298.herokuapp.com/getList', {
+        fetch('https://quest--backend.herokuapp.com/getList', {
             method:'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -68,34 +70,50 @@ const Board = () => {
        
     }, [])
   return (
-    <Back url = {Board.background ? Board.background : board.background}>
-        <div className="space">
-            <div className="projectName">
-                <h1 className='projectTitle margin'>{Board.title ? Board.title.replaceAll('"', '') : board.title.replaceAll('"', '')}</h1>
+      <DragDropContext>
+        <Back url = {Board.background ? Board.background : board.background}>
+            <div className="space">
+                <div className="projectName">
+                    <h1 className='projectTitle margin'>{Board.title ? Board.title.replaceAll('"', '') : board.title.replaceAll('"', '')}</h1>
+                </div>
             </div>
-        </div>
-          
-        <div className="space overflow">
-          { loading
-            ?
-            <div className="cards">
-                    {
-                       
-                        arr.map((item, index) => {
-                            return <Card key={index} title={item.title} lid = {item.lid}/>
-                        })
-                    }
-                <AddList pid = {Board.pid} setArr = {setArr}/>
+            
+            <div className="space overflow">
+            { loading
+                ?
+                <div className="cards">
+                        {
+                        
+                            arr.map((item, index) => {
+                                return (
+                                    <Droppable droppableId={`List ${index}`} key={index}>
+                                    {  
+                                        (provided) => (
+                                            <div className=""  ref={provided.innerRef}
+                                            {...provided.droppableProps}>
+                                                <Card key={index} help_index = {index}  title={item.title} lid = {item.lid}/>
+                                                {provided.placeholder}
+                                            </div>
+                                            
+                                        )
+                                    }
+                                   
+                                </Droppable>
+                                )
+                            })
+                        }
+                    <AddList pid = {Board.pid} setArr = {setArr}/>
+                    
+                </div>
+                :
+                <div className="ball">
+                    <BallTriangle  color='#6a11cb' height= '80' width='80' ariaLabel='loading'/>
+                </div>
+            }
                 
             </div>
-            :
-            <div className="ball">
-                <BallTriangle  color='#6a11cb' height= '80' width='80' ariaLabel='loading'/>
-            </div>
-          }
-            
-        </div>
-    </Back>
+        </Back>
+    </DragDropContext>
   )
 }
 

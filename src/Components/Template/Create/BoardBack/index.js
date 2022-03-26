@@ -25,7 +25,7 @@ const BoardBack = () => {
         if(title){
             if(slected){
 
-            fetch('https://fathomless-tor-67298.herokuapp.com/createProject', {
+            fetch('https://quest--backend.herokuapp.com/createProject', {
                 method:'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
