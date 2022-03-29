@@ -6,7 +6,7 @@ import { Logo, LogoHeader } from '../Template/NavBar/NavBar'
 
 const NavBar = () => {
   return (
-   <div className='navbarr'>
+   <div className='navbarr purp'>
        <nav>
             <Logo className = 'hover' >
                 <BsClipboardCheck size={30} color={'white'} className='hover'/>

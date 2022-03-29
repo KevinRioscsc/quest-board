@@ -38,9 +38,9 @@ const Template = () => {
         loading
         ?
         (
-          <div>
+          <div >
            
-            {currentUser.displayName && <h1 className='text-center mt-5'>Welcome {currentUser.displayName}</h1>}
+            {currentUser.displayName && <h1 className='text-center mt-5 white'>Welcome {currentUser.displayName}</h1>}
             <Hero>
             {
               arr.map((item, index) => {

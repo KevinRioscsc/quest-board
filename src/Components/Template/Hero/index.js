@@ -4,11 +4,11 @@ import {Width, User, H5, WorkSpace} from './Hero'
 
 const Hero = ({children}) => {
   return (
-    <div>
+    <div >
         <Width>
             <User>
-                <AiOutlineUser/>
-                <H5>Workspace Boards</H5>
+                <AiOutlineUser size={25} color='white'/>
+                <H5>Your Quests</H5>
             </User>
             <WorkSpace>
             {

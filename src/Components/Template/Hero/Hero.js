@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Width = styled.div`
     
-    max-width: 800px;
+    max-width: 900px;
     margin: 50px auto;
 `
 export const User = styled.div`
@@ -12,6 +12,7 @@ export const User = styled.div`
     margin-bottom: 10px;
 `
 export const H5 = styled.h5`
+    color: white;
 `
 export const WorkSpace = styled.div`
     display: flex;

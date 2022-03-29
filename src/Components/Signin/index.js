@@ -36,6 +36,7 @@ const SigninPage = () => {
       });
   }
   return (
+    <div className="white-back">
     <section class="vh-100">
     <div class="container-fluid h-custom">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -114,6 +115,7 @@ const SigninPage = () => {
       
     </div>
   </section>
+  </div>
   )
 }
 

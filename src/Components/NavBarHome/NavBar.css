@@ -2,11 +2,11 @@
   /* Firefox */
   * {
     scrollbar-width: auto;
-    scrollbar-color: #8f54a0 #ffffff;
+    scrollbar-color: #c2bcbb #ffffff;
 
   }
   body{
-   
+    background: #0E0B16;
   }
   .ball{
     height: 100vh;
@@ -16,15 +16,19 @@
   }
   *::-webkit-scrollbar-thumb{
     border-radius: 50px;
-    background: #8f54a0;
+    background: #868686;
    
     }
   /* Chrome, Edge, and Safari */
   *::-webkit-scrollbar {
     width: 16px;
   }
+  /*#4717F6*/
+  .back{
+      background: #0E0B16;
+  }
  .purp{
-     background: #653074;
+     background: #4717F6;
  }
   *::-webkit-scrollbar-track {
     background: #ebecf0;
@@ -52,12 +56,10 @@
   .projectTitle{
       font-size: 28px;
   }
-  .navbarr{
-    background: #653074;
-  }
+  
 nav{
     max-width: 1300px;
-    padding: 10px 10px;
+    padding: 20px 10px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -115,6 +117,6 @@ p{
     color: white;
 }
 .signin-btn:hover{
-    background: rgba(140, 17, 255, 0.788);
+    background: #A239CA;
     color: white;
 }

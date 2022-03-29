@@ -5,22 +5,18 @@ import AddList from './AddList'
 import { BallTriangle } from 'react-loader-spinner';
 import Card from './Card'
 import {DragDropContext} from 'react-beautiful-dnd'
-import { Droppable } from 'react-beautiful-dnd';
-
+import { reorderCards } from './reorder';
 
 const Board = () => {
-    const {Board, currentUser} = useAuth()
-    const [create, setCreate] = useState(false)
+    const {Board} = useAuth()
     const [loading, setLoading] = useState(false)
     const [board, setBoard] = useState({
         pid: Board.pid,
         background: Board.background,
         title: Board.title
     })
-    const [arr, setArr] = useState([{
-        lid: null,
-        title: ''
-    }])
+    const [lists, setLists] = useState([])
+
     const getPID = () => {
         let cookie = {};
             document.cookie.split(';').forEach(function(el) {
@@ -29,6 +25,7 @@ const Board = () => {
             })
             return cookie['pid'];
     }
+
     const getProject = () => {
         fetch('https://quest--backend.herokuapp.com/getProject', {
             method:'post',
@@ -38,7 +35,6 @@ const Board = () => {
             })
         }).then(res => res.json()) 
         .then(data => {
-            console.log(data)
             setBoard({
                 pid: data[0].pid,
                 background: data[0].url,
@@ -58,19 +54,48 @@ const Board = () => {
             })
         }).then(res => res.json()) 
         .then(data => {
-            console.log(data)
-            setArr(data)
+              var newArr = []
+              let lastIn =0;
+              for(let i = 0; i < data.length; i++){
+                  
+                if(i >= 0 && i < data.length - 1){
+                    var next = data[i + 1].lid
+                }
+                let current = data[i].lid
+                
+                if(current !== next || i === data.length-1){
+                    newArr.push({
+                        lid: data[i].lid,
+                        title:data[i].title,
+                        datacard: data.slice(lastIn,i + 1)
+                    })
+                    lastIn = i + 1
+                }
+              }
+             setLists(newArr)
             setLoading(true)
         })
     }
+     
+    
     useEffect(() => {
         
         getProject()
         getData()
        
     }, [])
+
+    const onDragEnd = (result) => {
+        const {source, destination}= result;
+       
+        if(!destination) return;
+
+        if(destination.droppableId === source.droppableId && destination.index ===source.index) return;
+  
+        setLists(reorderCards(lists, source, destination))
+    }
   return (
-      <DragDropContext>
+      <DragDropContext onDragEnd={onDragEnd} >
         <Back url = {Board.background ? Board.background : board.background}>
             <div className="space">
                 <div className="projectName">
@@ -79,30 +104,19 @@ const Board = () => {
             </div>
             
             <div className="space overflow">
+               
             { loading
                 ?
                 <div className="cards">
+                    {console.log(lists)}
                         {
                         
-                            arr.map((item, index) => {
-                                return (
-                                    <Droppable droppableId={`List ${index}`} key={index}>
-                                    {  
-                                        (provided) => (
-                                            <div className=""  ref={provided.innerRef}
-                                            {...provided.droppableProps}>
-                                                <Card key={index} help_index = {index}  title={item.title} lid = {item.lid}/>
-                                                {provided.placeholder}
-                                            </div>
-                                            
-                                        )
-                                    }
-                                   
-                                </Droppable>
-                                )
+                            lists.map((item, index) => {
+                               
+                                return  <Card key={index} lists={lists} setLists ={setLists} dataCard = {item.datacard} help_index = {index}  title={item.title.replaceAll('"', '')} lid = {item.lid}/>
                             })
                         }
-                    <AddList pid = {Board.pid} setArr = {setArr}/>
+                    <AddList pid = {Board.pid ? Board.pid : parseInt(getPID())} lists={lists} setArr = {setLists}/>
                     
                 </div>
                 :

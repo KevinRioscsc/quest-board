@@ -9,6 +9,7 @@ import BoardNew from './Components/pages/BoardNew'
 import PrivateRoute from './PrivateRoute';
 
 function App() {
+  
   return (
     <div>
         <Routes>

@@ -22,10 +22,13 @@ export const Overlay = styled.div`
     height: 100%;
     width: 100%;
     transition: .2s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.278);
+
     &:hover{
-        background-color: rgba(0, 0, 0, 0.178);
-        
+        background-color: rgba(0, 0, 0, 0.778);
     }
+        
+    
 `
 export const Title = styled.h6`
     color: whitesmoke;

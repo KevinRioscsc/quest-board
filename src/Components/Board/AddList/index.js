@@ -4,7 +4,7 @@ import {ListContainer, ListItems, Input, InputList, Button, Submit} from './List
 import {ImCross} from 'react-icons/im'
 import { useAuth } from '../../Context/AuthContext'
 
-const AddList = ({setArr, pid}) => {
+const AddList = ({setArr, pid, lists}) => {
     const [title, setTitle] = useState('')
     const {currentUser} = useAuth()
     const [toggle, setToggle]= useState(false)
@@ -16,14 +16,15 @@ const AddList = ({setArr, pid}) => {
                 method:'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
-                    pid: JSON.stringify(pid),
+                    pid: pid,
                     title:JSON.stringify(title)
                 })
             }).then(res => res.json()) 
             .then(id => {
                 setArr(cards => [...cards, {
                     lid:id.lid,
-                    title:title
+                    title:title,
+                    datacard:[]
                 }])
                 setTitle('')
             })
