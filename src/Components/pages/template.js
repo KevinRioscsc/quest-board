@@ -38,7 +38,7 @@ const Template = () => {
         loading
         ?
         (
-          <div >
+          <div className='space'>
            
             {currentUser.displayName && <h1 className='text-center mt-5 white'>Welcome {currentUser.displayName}</h1>}
             <Hero>

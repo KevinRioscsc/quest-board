@@ -48,7 +48,7 @@ const SigninPage = () => {
           <form>
             <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
               <p class="lead fw-normal mb-0 me-3">Sign in with</p>
-              <button type="button" class="btn purp white btn-floating mx-1" onClick={signinGoogle}>
+              <button type="button" class="btn purp2 white btn-floating mx-1" onClick={signinGoogle}>
                 <i class="fab fa-google"></i>
               </button>
   
@@ -84,7 +84,7 @@ const SigninPage = () => {
             </div>
             {error && <h6 className='red'>{error}</h6>}
             <div class="text-center text-lg-start mt-4 pt-2">
-              <button type="button" class="btn purp white btn-lg"
+              <button type="button" class="btn purp2 white btn-lg"
                 style={{paddingLeft: '2.5rem', paddingRight: '2.5rem'}} onClick={loginUser}>Login</button>
               <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? 
              <Link to={'/register'} class="link-danger ml-2">
@@ -98,7 +98,7 @@ const SigninPage = () => {
         </div>
       </div>
     </div>
-    <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 purp">
+    <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 purp2">
       
       <div class="text-white mb-3 mb-md-0">
         Copyright © 2020. All rights reserved.
