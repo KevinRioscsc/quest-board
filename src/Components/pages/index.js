@@ -3,7 +3,7 @@
 
  const Home = () => {
    return (
-       <div>
+       <div className='space2'>
             <NavBar/>
             <Hero/>
         </div>  

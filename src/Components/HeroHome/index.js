@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const Hero = () => {
   return (
     <div className="web">
-      <div className='hero'>
+      <div className='hero '>
           <div className="quest-hero">
             <div className="text">
               <h2 className='hero-title white'>Quest helps YOU move work forward.</h2>
@@ -19,7 +19,7 @@ const Hero = () => {
            </Link>
             </div>
             <div className="photo">
-              <img src={hero} alt="" height={450} />
+              <img src={hero} className = 'resp' alt="" height={450} />
             </div>
           </div>
 
@@ -32,7 +32,7 @@ const Hero = () => {
               <p className='join white'>Join over 1,000,000 individuals worldwide that are using Quest to get more done.</p>
           </div>
       </div>
-      <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 mt-5 px-xl-5 purp">
+      <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 mt-5 px-xl-5 purp2">
       
       <div class="text-white mb-3 mb-md-0">
         Copyright © 2020. All rights reserved.

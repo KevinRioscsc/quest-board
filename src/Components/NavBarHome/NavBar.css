@@ -27,8 +27,11 @@
   .back{
       background: #0E0B16;
   }
+  .purp2{
+    background: #3e3161;
+  }
  .purp{
-     background: #4717F6;
+    background: #0E0B16;
  }
   *::-webkit-scrollbar-track {
     background: #ebecf0;

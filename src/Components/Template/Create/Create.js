@@ -12,7 +12,7 @@ export const Overlay = styled.div`
     align-items: center;
     transition: .3s ease-in;
     top: 0;
-    visibility: ${props => props.clicked ? 'visible': 'hidden'};  
+    visibility: ${props => props.clicked ? 'visible': 'hidden'}; 
     opacity: ${props => props.clicked ? '1': '0'};
 `
 export const CreateTemplate = styled.div`
